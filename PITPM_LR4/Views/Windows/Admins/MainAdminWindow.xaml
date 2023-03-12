@@ -1,0 +1,155 @@
+﻿<Window x:Class="PITPM_LR4.Views.Windows.Admins.MainAdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PITPM_LR4.Views.Windows.Admins"
+        xmlns:vm="clr-namespace:PITPM_LR4.ViewModels.Admins"
+        xmlns:model="clr-namespace:PITPM_LR4.Models"
+        mc:Ignorable="d"
+        Title="MainUserWindow" Height="650" Width="800">
+    <Window.DataContext>
+        <vm:MainAdminViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer Grid.Row="0">
+            <ListBox ItemsSource="{Binding Goods}" 
+                     SelectedItem="{Binding SelectedGood, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="model:Good">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="0.1"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <StackPanel>
+                                    <Label Content="Картинка"/>
+                                    <Image Source="{Binding Image}"
+                               MaxHeight="100" MaxWidth="100"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <StackPanel>
+                                    <Label Content="Название"/>
+                                    <Label Content="{Binding Name}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="2">
+                                <StackPanel>
+                                    <Label Content="Цена"/>
+                                    <Label Content="{Binding Price}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Column="3">
+                                <StackPanel>
+                                    <Label Content="Количество"/>
+                                    <Label Content="{Binding Quantity}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Label Grid.Column="4" Content="{Binding Id}"
+                                   Visibility="Hidden"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Content="+"
+                        Command="{Binding AddGoodCommand}"/>
+                <Button Grid.Row="1" Content="S"
+                        Command="{Binding UpdateGoodsCommand}"/>
+                <Button Grid.Row="2" Content="-"
+                        Command="{Binding DeleteGoodCommand}"/>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ScrollViewer>
+                    <ListBox ItemsSource="{Binding Images}"
+                             SelectedItem="{Binding SelectedImage}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="model:ImagePath">
+                                <Image Source="{Binding Path}"
+                                       Margin="10"
+                                       MaxHeight="150"
+                                       MaxWidth="150"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+
+                <Grid Grid.Column="1" DataContext="{Binding SelectedGood}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel Grid.Column="0">
+                        <Label Content="Название"/>
+                        <TextBox Text="{Binding Name,
+                        UpdateSourceTrigger=PropertyChanged,
+                        Mode=TwoWay}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Цена"/>
+                        <TextBox Text="{Binding Price,
+                        UpdateSourceTrigger=PropertyChanged,
+                        Mode=TwoWay}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <Label Content="Количество"/>
+                        <TextBox Text="{Binding Quantity,
+                        UpdateSourceTrigger=PropertyChanged,
+                        Mode=TwoWay}"/>
+                    </StackPanel>
+                    
+                </Grid>
+                
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+    
+</Window>
+    
