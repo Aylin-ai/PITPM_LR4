@@ -101,6 +101,21 @@ namespace PITPM_LR4.ViewModels
 
         #endregion
 
+        #region Команда перехода к странице авторизации
+
+        public ICommand AuthWindowCommand { get; }
+
+        private bool CanAuthWindowCommandExecute(object p) => true;
+        private void OnAuthWindowCommandExecuted(object p)
+        {
+            AuthoWindow authoWindow = new AuthoWindow();
+            authoWindow.Show();
+
+            OnClosingRequest();
+        }
+
+        #endregion
+
         #endregion
 
         public RegistrationWindowViewModel()
@@ -108,6 +123,7 @@ namespace PITPM_LR4.ViewModels
             #region Команды
 
             RegistrCommand = new LambdaCommand(OnRegistrCommandExectuted, CanRegistrCommandExecute);
+            AuthWindowCommand = new LambdaCommand(OnAuthWindowCommandExecuted, CanAuthWindowCommandExecute);
 
             #endregion
         }

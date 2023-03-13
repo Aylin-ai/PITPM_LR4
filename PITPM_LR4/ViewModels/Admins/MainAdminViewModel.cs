@@ -13,9 +13,10 @@ using System.Windows.Input;
 
 namespace PITPM_LR4.ViewModels.Admins
 {
-    internal class MainAdminViewModel : ViewModel
+    public class MainAdminViewModel : ViewModel
     {
         #region Данные о товарах
+
         public List<Good> Goods { get; set; }
 
         private Good selectedGood;

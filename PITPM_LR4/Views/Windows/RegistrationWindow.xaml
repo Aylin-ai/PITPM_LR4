@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:PITPM_LR4.ViewModels"
         xmlns:local="clr-namespace:PITPM_LR4.Views.Windows"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="500" Width="400">
+        Title="RegistrationWindow" Height="550" Width="400">
     <Window.DataContext>
         <vm:RegistrationWindowViewModel/>
     </Window.DataContext>
@@ -26,7 +26,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
@@ -56,9 +56,25 @@
                 Mode=TwoWay}">
             </ListBox>
 
-            <Button Grid.Row="4" Content="Регистрация"
+            <StackPanel Grid.Row="4">
+
+                <Button Content="Регистрация"
                     Command="{Binding RegistrCommand}"
                     CommandParameter="{Binding ElementName=RegistrationWindow}"/>
+
+                <Label Content="Вход"
+               FontSize="14" HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Foreground="DarkCyan"
+                       Margin="0">
+                    <Label.InputBindings>
+                        <MouseBinding Command="{Binding AuthWindowCommand}"
+                              MouseAction="LeftClick"/>
+                    </Label.InputBindings>
+                </Label>
+
+            </StackPanel>
+            
 
         </Grid>
 
