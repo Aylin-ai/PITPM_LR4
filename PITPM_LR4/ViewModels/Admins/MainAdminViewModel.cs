@@ -44,20 +44,27 @@ namespace PITPM_LR4.ViewModels.Admins
         {
             using (Context db = new Context())
             {
-                if (SelectedImage != null)
+                if (SelectedGood == null)
                 {
-                    string[] sselectedImage = SelectedImage.Path.Split('\\');
-                    SelectedGood.Image = "/Images/" + sselectedImage[sselectedImage.Length - 1];
+                    MessageBox.Show("Товар не выбран");
                 }
-                for (int i = 0; i < db.Goods.Count(); i++)
+                else
                 {
-                    if (db.Goods.ToList()[i].Id == SelectedGood.Id)
+                    if (SelectedImage != null)
                     {
-                        db.Goods.AddOrUpdate(SelectedGood, db.Goods.ToList()[i]);
-                        break;
+                        string[] sselectedImage = SelectedImage.Path.Split('\\');
+                        SelectedGood.Image = "/Images/" + sselectedImage[sselectedImage.Length - 1];
                     }
+                    for (int i = 0; i < db.Goods.Count(); i++)
+                    {
+                        if (db.Goods.ToList()[i].Id == SelectedGood.Id)
+                        {
+                            db.Goods.AddOrUpdate(SelectedGood, db.Goods.ToList()[i]);
+                            break;
+                        }
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
         }
 
@@ -92,15 +99,22 @@ namespace PITPM_LR4.ViewModels.Admins
         {
             using (Context db = new Context())
             {
-                for (int i = 0; i < db.Goods.Count(); i++)
+                if (SelectedGood == null)
                 {
-                    if (db.Goods.ToList()[i].Id == SelectedGood.Id)
-                    {
-                        db.Goods.Remove(db.Goods.ToList()[i]);
-                        break;
-                    }
+                    MessageBox.Show("Товар не выбран");
                 }
-                db.SaveChanges();
+                else
+                {
+                    for (int i = 0; i < db.Goods.Count(); i++)
+                    {
+                        if (db.Goods.ToList()[i].Id == SelectedGood.Id)
+                        {
+                            db.Goods.Remove(db.Goods.ToList()[i]);
+                            break;
+                        }
+                    }
+                    db.SaveChanges();
+                }
             }
         }
 

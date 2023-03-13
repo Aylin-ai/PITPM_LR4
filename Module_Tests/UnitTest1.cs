@@ -43,7 +43,7 @@ namespace Module_Tests
         {
             MainAdminViewModel mainAdminViewModel = new MainAdminViewModel();
 
-            mainAdminViewModel.SelectedGood = new PITPM_LR4.Models.Good() { Id = 8, Name = "Помидоры", Price = 100, Quantity = 1000 };
+            mainAdminViewModel.SelectedGood = null;
             mainAdminViewModel.DeleteGoodCommand.Execute(mainAdminViewModel);
         }
 
