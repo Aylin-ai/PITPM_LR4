@@ -119,7 +119,7 @@ namespace PITPM_LR4.ViewModels.Admins
 
             #endregion
 
-            var dir = Directory.GetFiles("D:\\Учеба\\4335\\2_семестр\\ПИТПМ\\ЛР4\\PITPM_LR4\\PITPM_LR4\\Images\\");
+            var dir = Directory.GetFiles("C:\\Users\\KIT_07_206\\Desktop\\ЗагидуллинАР 4335\\ПИТПМ\\ЛР4\\PITPM_LR4\\Images\\");
 
             foreach (var item in dir)
             {
