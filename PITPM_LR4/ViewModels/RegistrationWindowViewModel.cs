@@ -93,9 +93,10 @@ namespace PITPM_LR4.ViewModels
             else
                 MessageBox.Show("Не введены все данные");
 
-            this.OnClosingRequest();
             AuthoWindow authoWindow = new AuthoWindow();
             authoWindow.Show();
+
+            this.OnClosingRequest();
         }
 
         #endregion

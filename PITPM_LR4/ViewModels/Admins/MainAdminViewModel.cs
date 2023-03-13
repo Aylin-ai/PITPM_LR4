@@ -56,7 +56,6 @@ namespace PITPM_LR4.ViewModels.Admins
                         break;
                     }
                 }
-                MessageBox.Show(SelectedGood.Price.ToString());
                 db.SaveChanges();
             }
         }
